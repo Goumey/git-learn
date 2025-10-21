@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bienvenue — Votre service</title>
+    <meta name="description"
+        content="Bienvenue sur notre page — découvrez notre service, inscrivez-vous et commencez en quelques clics." />
+
+    <!-- Google Font (facultatif) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg1: #0f172a;
+            /* foncé */
+            --bg2: #081028;
+            /* gradient */
+            --accent: #7c3aed;
+            /* violet */
+            --accent-2: #06b6d4;
+            /* teal */
+            --muted: #94a3b8;
+            --card: rgba(255, 255, 255, 0.04);
+            --glass: rgba(255, 255, 255, 0.06);
+            --radius: 14px;
+            --max-width: 1100px;
+            --gutter: 24px;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        /* reset minimal */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(124, 58, 237, 0.12), transparent 10%),
+                radial-gradient(900px 400px at 90% 90%, rgba(6, 182, 212, 0.06), transparent 8%),
+                linear-gradient(180deg, var(--bg1), var(--bg2));
+            color: #e6eef8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.45;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(10, 12, 20, 0.6);
+            flex-shrink: 0;
+        }
+
+        .logo svg {
+            filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.4));
+        }
+
+        .brand h1 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.2px
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 10px;
+        }
+
+        .nav a.primary {
+            background: linear-gradient(90deg, rgba(124, 58, 237, 0.14), rgba(6, 182, 212, 0.06));
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            border-radius: var(--radius);
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 28px;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(2, 6, 23, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .hero-left h2 {
+            font-size: clamp(22px, 3.6vw, 34px);
+            line-height: 1.02;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .hero-left p {
+            color: var(--muted);
+            margin-bottom: 18px;
+            font-size: 15px;
+            max-width: 70ch;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            color: #041025;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            box-shadow: 0 8px 22px rgba(99, 102, 241, 0.18), inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+            transition: transform .14s ease, box-shadow .14s ease;
+        }
+
+        .btn.secondary {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: none;
+            font-weight: 600;
+        }
+
+        .btn:active {
+            transform: translateY(1px)
+        }
+
+        .small {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* Card (form / preview) */
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 8px 30px rgba(2, 6, 23, 0.45);
+        }
+
+        .preview {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .preview .big {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .preview svg {
+            width: 160px;
+            height: 160px;
+            opacity: 0.96
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 6px;
+        }
+
+        .feature {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .feature h4 {
+            margin-bottom: 8px
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+            padding: 14px 6px;
+        }
+
+        /* form */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        label {
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: transparent;
+            color: #eaf3ff;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.22)
+        }
+
+        .row {
+            display: flex;
+            gap: 10px
+        }
+
+        .row .col {
+            flex: 1
+        }
+
+        /* subtle animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeUp .7s ease forwards
+        }
+
+        .fade-up.delay-1 {
+            animation-delay: .12s
+        }
+
+        .fade-up.delay-2 {
+            animation-delay: .24s
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        /* responsiveness */
+        @media (max-width:980px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 22px
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .hero-left p {
+                max-width: 100%
+            }
+        }
+
+        @media (max-width:620px) {
+            body {
+                padding: 20px 12px
+            }
+
+            .features {
+                grid-template-columns: 1fr
+            }
+
+            .nav {
+                display: none
+            }
+
+            .hero {
+                padding: 18px
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px
+            }
+        }
+
+        /* focus for accessibility */
+        a:focus,
+        button:focus,
+        input:focus {
+            outline: 3px solid rgba(124, 58, 237, 0.18);
+            outline-offset: 3px
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container" role="main">
+        <header class="fade-up">
+            <a href="#" class="brand" aria-label="Aller à l'accueil">
+                <span class="logo" aria-hidden="true">
+                    <!-- simple SVG mark -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="5" fill="white" opacity="0.06"></rect>
+                        <path d="M6 15.5C8 9 16 8.5 18 15.5" stroke="white" stroke-opacity="0.9" stroke-width="1.6"
+                            stroke-linecap="round" />
+                    </svg>
+                </span>
+                <div>
+                    <h1>Bienvenue</h1>
+                    <div class="small">Votre nouveau départ — simple et rapide</div>
+                </div>
+            </a>
+
+            <nav class="nav" aria-label="navigation principale">
+                <a href="#features">Fonctionnalités</a>
+                <a href="#pricing">Tarifs</a>
+                <a href="#contact" class="primary">Commencer</a>
+            </nav>
+        </header>
+
+        <section class="hero fade-up delay-1" aria-labelledby="hero-title">
+            <div class="hero-left">
+                <h2 id="hero-title">Bienvenue — simplify everything. <br><span
+                        style="font-weight:500;color:var(--muted)">On s'occupe du reste.</span></h2>
+                <p>Découvrez une expérience fluide pour lancer votre projet, capturer des leads et convertir vos
+                    visiteurs — sans prise de tête. Design moderne, performance, et accessibilité intégrées.</p>
+
+                <div class="cta-row" role="group" aria-label="Appels à l'action">
+                    <a href="#contact" class="btn" id="primary-cta">Commencer maintenant</a>
+                    <a href="#features" class="btn secondary">Voir les fonctionnalités</a>
+                    <span class="small" aria-hidden="true">Pas de carte requise • 7 jours gratuits</span>
+                </div>
+
+                <div style="margin-top:18px;color:var(--muted);font-size:13px">
+                    <strong style="color:#fff">Astuce :</strong> Modifie le texte, les couleurs ou l'illustration SVG
+                    pour adapter la page à ta marque.
+                </div>
+            </div>
+
+            <aside class="card preview" aria-labelledby="preview-title" aria-live="polite">
+                <div id="preview-title" class="big">Prêt à tester ?</div>
+
+                <!-- Lovely decorative SVG illustration (inline so pas de dépendance) -->
+                <svg viewBox="0 0 200 200" role="img" aria-label="Illustration decorative">
+                    <defs>
+                        <linearGradient id="g1" x1="0" x2="1">
+                            <stop offset="0" stop-color="#7c3aed" stop-opacity="0.95" />
+                            <stop offset="1" stop-color="#06b6d4" stop-opacity="0.95" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="10" y="10" width="180" height="180" rx="24" fill="url(#g1)" opacity="0.18" />
+                    <g transform="translate(32,32)" fill="white" opacity="0.9">
+                        <circle cx="40" cy="30" r="10" />
+                        <rect x="8" y="60" width="64" height="42" rx="8"></rect>
+                        <rect x="84" y="24" width="60" height="78" rx="10" opacity="0.9"></rect>
+                        <rect x="88" y="28" width="52" height="12" rx="5" fill="rgba(255,255,255,0.95)"></rect>
+                        <rect x="96" y="52" width="36" height="10" rx="4" fill="rgba(255,255,255,0.9)"></rect>
+                    </g>
+                </svg>
+
+                <form id="signup" class="card" aria-label="Formulaire d'inscription" onsubmit="return false;">
+                    <label>
+                        Ton prénom
+                        <input type="text" id="name" name="name" placeholder="Ex: Léa" aria-required="true" required>
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" id="email" name="email" placeholder="exemple@domaine.com"
+                            aria-required="true" required>
+                    </label>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn" id="submitBtn">S'inscrire</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn secondary" id="demoBtn">Voir une démo</button>
+                        </div>
+                    </div>
+                    <div id="formMsg" class="small" role="status" aria-live="polite"
+                        style="display:none;margin-top:6px"></div>
+                </form>
+            </aside>
+        </section>
+
+        <section id="features" class="fade-up delay-2" aria-labelledby="features-title" style="margin-top:6px">
+            <h3 id="features-title" style="font-size:18px;margin-bottom:12px">Fonctionnalités clés</h3>
+            <div class="features">
+                <div class="feature" role="article">
+                    <h4>Installation en 5 minutes</h4>
+                    <p>Templates prêts à l'emploi, intégration simple et configuration guidée pour être en ligne
+                        rapidement.</p>
+                </div>
+                <div class="feature" role="article">
+                    <h4>Optimisé pour la conversion</h4>
+                    <p>CTA clairs, formulaires courts et tests A/B natifs pour améliorer vos résultats.</p>
+                </div>
+                <div class="feature" role="article">
+                    <h4>Sécurité & performance</h4>
+                    <p>Hébergement rapide, certificats SSL et sauvegardes automatiques pour dormir tranquille.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="fade-up" style="margin-top:18px">
+            <h3 style="font-size:18px;margin-bottom:12px">Tarifs flexibles</h3>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+                <div class="card">
+                    <strong>Starter</strong>
+                    <div style="font-size:22px;margin:8px 0">Gratuit</div>
+                    <div class="small">Essentiel — parfait pour tester.</div>
+                </div>
+                <div class="card">
+                    <strong>Pro</strong>
+                    <div style="font-size:22px;margin:8px 0">€19 / mois</div>
+                    <div class="small">Fonctionnalités complètes pour les petites équipes.</div>
+                </div>
+                <div class="card">
+                    <strong>Entreprise</strong>
+                    <div style="font-size:22px;margin:8px 0">Sur devis</div>
+                    <div class="small">Support prioritaire et intégrations personnalisées.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="fade-up" style="margin-top:18px">
+            <h3 style="font-size:18px;margin-bottom:12px">Contact</h3>
+            <div class="card" style="display:flex;gap:14px;flex-direction:column">
+                <p class="small">Une question ? Écris-nous — nous répondons souvent en moins de 24h.</p>
+                <form id="contactForm" onsubmit="return false;"
+                    style="display:grid;grid-template-columns:1fr 220px;gap:10px;align-items:center">
+                    <input type="email" id="contactEmail" name="contactEmail" placeholder="Ton email" required>
+                    <button class="btn" type="submit">Envoyer</button>
+                </form>
+            </div>
+        </section>
+
+        <footer class="fade-up" aria-hidden="false">
+            © <span id="year"></span> — Fait avec ♥ · Design simple et propre.
+        </footer>
+    </main>
+
+    <script>
+        // petit JS pour interactions (progressive enhancement)
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const signup = document.getElementById('signup');
+        const submitBtn = document.getElementById('submitBtn');
+        const demoBtn = document.getElementById('demoBtn');
+        const formMsg = document.getElementById('formMsg');
+
+        // Handler pseudo-submit (remplace par envoi réel côté serveur)
+        signup.addEventListener('submit', function (e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi…';
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            // validation simple
+            if (!name || !email) {
+                showMsg('Merci de remplir tous les champs.', true);
+                submitBtn.disabled = false;
+                submitBtn.textContent = "S'inscrire";
+                return;
+            }
+
+            // Simule un envoi (ici on affiche un message convivial)
+            setTimeout(() => {
+                showMsg('Merci ! Un e-mail de bienvenue a été envoyé à ' + email + '.', false);
+                submitBtn.textContent = 'Inscrit ✓';
+            }, 700);
+        });
+
+        demoBtn.addEventListener('click', () => {
+            showMsg('La démo est momentanément désactivée dans cette maquette — remplace ce bouton par ton lien de démo.', false);
+        });
+
+        // petit handler contact
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('contactEmail').value.trim();
+            if (!email) { alert('Merci de renseigner un email valide.'); return; }
+            alert('Merci — nous vous répondrons à ' + email + ' (simulation).');
+            contactForm.reset();
+        });
+
+        function showMsg(text, isError) {
+            formMsg.style.display = 'block';
+            formMsg.style.color = isError ? '#ffb4b4' : '#cfefff';
+            formMsg.textContent = text;
+            setTimeout(() => {
+                formMsg.style.display = 'none';
+            }, 6000);
+        }
+
+        // Small: reveal animation when element scrolls into view (progressive)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('fade-up');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
